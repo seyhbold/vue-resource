@@ -1,0 +1,90 @@
+{
+  "name": "seyhbold/vue-resource",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "",
+  "branch": "",
+  "style": {
+    "name": "Material",
+    "componentSet": {
+      "nav": "nav/DarkAbsoluteNav",
+      "header": "header/GradientHeader",
+      "article": "article/BasicArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "Roboto, sans-serif",
+    "heading": {
+      "fontWeight": 500,
+      "letterSpacing": "-0.01em"
+    },
+    "colors": {
+      "text": "#212121",
+      "background": "#fff",
+      "primary": "#2196f3",
+      "secondary": "#1565c0",
+      "highlight": "#ff4081",
+      "border": "#e0e0e0",
+      "muted": "#f5f5f5"
+    },
+    "layout": {
+      "centered": true,
+      "bannerHeight": "80vh",
+      "maxWidth": 896
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/seyhbold/vue-resource",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/vue-resource",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "vue-resource",
+      "subhead": "Resource component for Vue.js",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "vue-resource: Resource component for Vue.js",
+          "url": ""
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "seyhbold",
+          "repo": "vue-resource"
+        }
+      ],
+      "text": "v0.1.17"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "\n<p>Resource plugin for Vue.js.</p>\n<p>The plugin provides services for making web requests and handle responses using a XMLHttpRequest or JSONP.</p>\n<h2>Setup</h2>\n<h3>Webpack/Browserify</h3>\n<p>Add <code>vue</code> and <code>vue-resource</code> to your <code>package.json</code>, then <code>npm install</code>, then add these lines in your code:</p>\n<pre><span class=\"hljs-keyword\">var</span> Vue = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">&apos;vue&apos;</span>);\n\nVue.use(<span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">&apos;vue-resource&apos;</span>));</pre><h3>Configuration</h3>\n<p>Set default values using the global configuration.</p>\n<pre>Vue.http.options.root = <span class=\"hljs-string\">&apos;/root&apos;</span>;\nVue.http.headers.common[<span class=\"hljs-string\">&apos;Authorization&apos;</span>] = <span class=\"hljs-string\">&apos;Basic YXBpOnBhc3N3b3Jk&apos;</span>;</pre><p>Set default values inside your Vue component options.</p>\n<pre><span class=\"hljs-keyword\">new</span> Vue({\n\n    <span class=\"hljs-attr\">http</span>: {\n      <span class=\"hljs-attr\">root</span>: <span class=\"hljs-string\">&apos;/root&apos;</span>,\n      <span class=\"hljs-attr\">headers</span>: {\n        <span class=\"hljs-attr\">Authorization</span>: <span class=\"hljs-string\">&apos;Basic YXBpOnBhc3N3b3Jk&apos;</span>\n      }\n    }\n\n})</pre><h2>HTTP</h2>\n<p>The http service can be used globally <code>Vue.http</code> or in a Vue instance <code>this.$http</code>.</p>\n<h3>Methods</h3>\n<ul>\n<li><code>get(url, [data], [success], [options])</code></li>\n<li><code>post(url, [data], [success], [options])</code></li>\n<li><code>put(url, [data], [success], [options])</code></li>\n<li><code>patch(url, [data], [success], [options])</code></li>\n<li><code>delete(url, [data], [success], [options])</code></li>\n<li><code>jsonp(url, [data], [success], [options])</code></li>\n</ul>\n<h3>Options</h3>\n<ul>\n<li><strong>url</strong> - <code>string</code> - URL to which the request is sent</li>\n<li><strong>data</strong> - <code>Object|string</code> - Data to be sent as the request message data</li>\n<li><strong>method</strong> - <code>string</code> - HTTP method (e.g. GET, POST, ...)</li>\n<li><strong>params</strong> - <code>Object</code> - Parameters object to be appended as GET parameters</li>\n<li><strong>headers</strong> - <code>Object</code> - Headers object to be sent as HTTP request headers</li>\n<li><strong>success</strong> - <code>function(data, status, request)</code> - Callback function to be called when the request finishes</li>\n<li><strong>error</strong> - <code>function(data, status, request)</code> - Callback function to be called when the request fails</li>\n<li><strong>beforeSend</strong> - <code>function(request, options)</code> - Callback function to modify the request object before it is sent</li>\n<li><strong>emulateHTTP</strong> - <code>boolean</code> - Send PUT, PATCH and DELETE requests with a HTTP POST and set the <code>X-HTTP-Method-Override</code> header</li>\n<li><strong>emulateJSON</strong> - <code>boolean</code> -  Send request data as <code>application/x-www-form-urlencoded</code> content type</li>\n<li><strong>xhr</strong> - <code>Object</code> - Parameters object to be set on the native XHR object</li>\n<li><strong>jsonp</strong> - <code>string</code> - Callback function name in a JSONP request</li>\n</ul>\n<h3>Example</h3>\n<pre><span class=\"hljs-keyword\">new</span> Vue({\n\n    <span class=\"hljs-attr\">ready</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\"></span>) </span>{\n\n      <span class=\"hljs-comment\">// GET request</span>\n      <span class=\"hljs-keyword\">this</span>.$http.get(<span class=\"hljs-string\">&apos;/someUrl&apos;</span>, <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> (<span class=\"hljs-params\">data, status, request</span>) </span>{\n\n          <span class=\"hljs-comment\">// set data on vm</span>\n          <span class=\"hljs-keyword\">this</span>.$set(<span class=\"hljs-string\">&apos;someData&apos;</span>, data)\n\n      }).error(<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> (<span class=\"hljs-params\">data, status, request</span>) </span>{\n          <span class=\"hljs-comment\">// handle error</span>\n      })\n\n    }\n\n})</pre><h2>Resource</h2>\n<p>The resource service can be used globally <code>Vue.resource</code> or in a Vue instance <code>this.$resource</code>.</p>\n<h3>Methods</h3>\n<ul>\n<li><code>resource(url, [params], [actions], [options])</code></li>\n</ul>\n<h3>Default Actions</h3>\n<pre>get: {<span class=\"hljs-attr\">method</span>: <span class=\"hljs-string\">&apos;GET&apos;</span>},\n<span class=\"hljs-attr\">save</span>: {<span class=\"hljs-attr\">method</span>: <span class=\"hljs-string\">&apos;POST&apos;</span>},\n<span class=\"hljs-attr\">query</span>: {<span class=\"hljs-attr\">method</span>: <span class=\"hljs-string\">&apos;GET&apos;</span>},\n<span class=\"hljs-attr\">update</span>: {<span class=\"hljs-attr\">method</span>: <span class=\"hljs-string\">&apos;PUT&apos;</span>},\n<span class=\"hljs-attr\">remove</span>: {<span class=\"hljs-attr\">method</span>: <span class=\"hljs-string\">&apos;DELETE&apos;</span>},\n<span class=\"hljs-attr\">delete</span>: {<span class=\"hljs-attr\">method</span>: <span class=\"hljs-string\">&apos;DELETE&apos;</span>}</pre><h3>Example</h3>\n<pre><span class=\"hljs-keyword\">new</span> Vue({\n\n    <span class=\"hljs-attr\">ready</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\"></span>) </span>{\n\n      <span class=\"hljs-keyword\">var</span> resource = <span class=\"hljs-keyword\">this</span>.$resource(<span class=\"hljs-string\">&apos;someItem/:id&apos;</span>);\n\n      <span class=\"hljs-comment\">// get item</span>\n      resource.get({<span class=\"hljs-attr\">id</span>: <span class=\"hljs-number\">1</span>}, <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> (<span class=\"hljs-params\">item, status, request</span>) </span>{\n          <span class=\"hljs-keyword\">this</span>.$set(<span class=\"hljs-string\">&apos;item&apos;</span>, item)\n      })\n\n      <span class=\"hljs-comment\">// save item</span>\n      resource.save({<span class=\"hljs-attr\">id</span>: <span class=\"hljs-number\">1</span>}, {<span class=\"hljs-attr\">item</span>: <span class=\"hljs-keyword\">this</span>.item}, <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> (<span class=\"hljs-params\">data, status, request</span>) </span>{\n          <span class=\"hljs-comment\">// handle success</span>\n      }).error(<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> (<span class=\"hljs-params\">data, status, request</span>) </span>{\n          <span class=\"hljs-comment\">// handle error</span>\n      })\n\n      <span class=\"hljs-comment\">// delete item</span>\n      resource.delete({<span class=\"hljs-attr\">id</span>: <span class=\"hljs-number\">1</span>}, <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> (<span class=\"hljs-params\">data, status, request</span>) </span>{\n          <span class=\"hljs-comment\">// handle success</span>\n      }).error(<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> (<span class=\"hljs-params\">data, status, request</span>) </span>{\n          <span class=\"hljs-comment\">// handle error</span>\n      })\n\n    }\n\n})</pre>"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/seyhbold/vue-resource",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/seyhbold",
+          "text": "seyhbold"
+        }
+      ]
+    }
+  ]
+}
